@@ -15,7 +15,7 @@ const queryClient = new QueryClient();
 function App(): JSX.Element {
   return (
     <QueryClientProvider client={queryClient}>
-      <SafeAreaView>
+      <SafeAreaView style={{flex: 1}}>
         <StatusBar barStyle="dark-content" />
 
         {/* <Text>Product Grid</Text>
