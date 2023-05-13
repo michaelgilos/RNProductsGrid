@@ -46,6 +46,22 @@ const Item = ({title, thumbnail, price, rating, date}: ItemProps) => {
   );
 };
 
+const Ads = () => {
+  return (
+    <View style={styles.adsContainer}>
+      <Text style={styles.itemTitle}>But first, a word from our sponsors:</Text>
+      <Image
+        style={styles.ads}
+        source={{
+          uri: `http://localhost:8000/ads/?r=${Math.floor(
+            Math.random() * 1000,
+          )}`,
+        }}
+      />
+    </View>
+  );
+};
+
 const LoadingAnim = () => (
   <View style={{flex: 1, alignItems: 'center', justifyContent: 'center'}}>
     <Text style={{color: 'black'}}>loading...</Text>
@@ -54,11 +70,15 @@ const LoadingAnim = () => (
 );
 
 const ProductList = () => {
+  const SHOW_ADS_AFTER_EVERY_PRODUCT = 20;
+
   const {data, isLoading, refetch} = useGetAllProducts();
 
   if (isLoading) {
     return <LoadingAnim />;
   }
+
+  const showAds = (index: number) => index % SHOW_ADS_AFTER_EVERY_PRODUCT === 0;
 
   return (
     <SafeAreaView style={styles.container}>
@@ -66,7 +86,9 @@ const ProductList = () => {
         style={{margin: 10}}
         refreshing={isLoading}
         data={data}
-        renderItem={({item}) => <Item {...item} />}
+        renderItem={({item, index}) => {
+          return showAds(index) ? <Ads /> : <Item {...item} />;
+        }}
         numColumns={2}
         keyExtractor={item => item.id}
       />
@@ -101,5 +123,18 @@ const styles = StyleSheet.create({
     alignSelf: 'center',
     height: 100,
     width: 100,
+  },
+  adsContainer: {
+    backgroundColor: '#f9c2ff',
+    width: '50%',
+    // padding: 20,
+    margin: 2,
+  },
+  ads: {
+    justifyContent: 'center',
+    alignItems: 'center',
+    alignSelf: 'center',
+    height: 200,
+    width: '100%',
   },
 });
