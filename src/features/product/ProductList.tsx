@@ -10,6 +10,7 @@ import {
 } from 'react-native';
 import {formatDistance, isSameWeek} from 'date-fns';
 import {useGetAllProducts} from './hooks/useGetAllProducts';
+import {AirbnbRating, Rating} from 'react-native-ratings';
 
 type ItemProps = {
   id: string;
@@ -34,6 +35,13 @@ const Item = ({title, thumbnail, price, rating, date}: ItemProps) => {
         'en-US',
       )}`}</Text>
       <Text style={styles.itemText}>{`Date Added: ${dateFormat}`}</Text>
+      <Rating
+        startingValue={rating}
+        ratingTextColor="teal"
+        readonly={true}
+        imageSize={20}
+        style={{alignItems: 'flex-start'}}
+      />
     </View>
   );
 };
