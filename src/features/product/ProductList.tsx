@@ -66,10 +66,9 @@ const styles = StyleSheet.create({
   },
   item: {
     backgroundColor: '#f9c2ff',
+    width: '50%',
     padding: 20,
     margin: 2,
-    // marginVertical: 8,
-    // marginHorizontal: 16,
   },
   itemTitle: {
     fontSize: 16,
