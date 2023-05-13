@@ -78,7 +78,8 @@ const ProductList = () => {
     return <LoadingAnim />;
   }
 
-  const showAds = (index: number) => index % SHOW_ADS_AFTER_EVERY_PRODUCT === 0;
+  const showAds = (index: number) =>
+    index > 0 && index % SHOW_ADS_AFTER_EVERY_PRODUCT === 0;
 
   return (
     <SafeAreaView style={styles.container}>
