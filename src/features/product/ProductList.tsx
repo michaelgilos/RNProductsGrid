@@ -21,7 +21,7 @@ const Item = ({title, thumbnail, price, rating, date}: ItemProps) => (
   <View style={styles.item}>
     <Text style={styles.itemTitle}>{title}</Text>
     <Image style={styles.imageThumbnail} source={{uri: thumbnail}} />
-    <Text style={styles.itemText}>{`$${price}`}</Text>
+    <Text style={styles.itemText}>{`$${price.toLocaleString('en-US')}`}</Text>
     <Text style={styles.itemText}>{new Date(date).toLocaleString()}</Text>
   </View>
 );
