@@ -7,6 +7,7 @@ import {
   Text,
   View,
 } from 'react-native';
+import {formatDistance, subDays} from 'date-fns';
 import {useGetAllProducts} from './hooks/useGetAllProducts';
 
 type ItemProps = {
@@ -17,14 +18,20 @@ type ItemProps = {
   rating: number;
   date: string;
 };
-const Item = ({title, thumbnail, price, rating, date}: ItemProps) => (
-  <View style={styles.item}>
-    <Text style={styles.itemTitle}>{title}</Text>
-    <Image style={styles.imageThumbnail} source={{uri: thumbnail}} />
-    <Text style={styles.itemText}>{`$${price.toLocaleString('en-US')}`}</Text>
-    <Text style={styles.itemText}>{new Date(date).toLocaleString()}</Text>
-  </View>
-);
+const Item = ({title, thumbnail, price, rating, date}: ItemProps) => {
+  const dateAdded = new Date(date);
+  const dateFormat = formatDistance(dateAdded, new Date(), {
+    addSuffix: true,
+  });
+  return (
+    <View style={styles.item}>
+      <Text style={styles.itemTitle}>{title}</Text>
+      <Image style={styles.imageThumbnail} source={{uri: thumbnail}} />
+      <Text style={styles.itemText}>{`$${price.toLocaleString('en-US')}`}</Text>
+      <Text style={styles.itemText}>{`Date Added: ${dateFormat}`}</Text>
+    </View>
+  );
+};
 
 const ProductList = () => {
   const {data, isLoading, refetch} = useGetAllProducts();
