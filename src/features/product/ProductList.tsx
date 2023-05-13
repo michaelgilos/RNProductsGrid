@@ -82,6 +82,7 @@ const styles = StyleSheet.create({
   imageThumbnail: {
     justifyContent: 'center',
     alignItems: 'center',
+    alignSelf: 'center',
     height: 100,
     width: 100,
   },
