@@ -1,5 +1,6 @@
 import React from 'react';
 import {
+  ActivityIndicator,
   FlatList,
   Image,
   SafeAreaView,
@@ -41,12 +42,18 @@ const ProductList = () => {
   const {data, isLoading, refetch} = useGetAllProducts();
 
   if (isLoading) {
-    return <Text style={{color: 'black'}}>loading...</Text>;
+    return (
+      <View style={{flex: 1, alignItems: 'center', justifyContent: 'center'}}>
+        <Text style={{color: 'black'}}>loading...</Text>
+        <ActivityIndicator size={'large'} />
+      </View>
+    );
   }
 
   return (
     <SafeAreaView style={styles.container}>
       <FlatList
+        ListEmptyComponent={<Text style={{color: 'black'}}>loading...</Text>}
         style={{margin: 10}}
         refreshing={isLoading}
         data={data}
