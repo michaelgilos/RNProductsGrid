@@ -38,16 +38,18 @@ const Item = ({title, thumbnail, price, rating, date}: ItemProps) => {
   );
 };
 
+const LoadingAnim = () => (
+  <View style={{flex: 1, alignItems: 'center', justifyContent: 'center'}}>
+    <Text style={{color: 'black'}}>loading...</Text>
+    <ActivityIndicator size={'large'} />
+  </View>
+);
+
 const ProductList = () => {
   const {data, isLoading, refetch} = useGetAllProducts();
 
   if (isLoading) {
-    return (
-      <View style={{flex: 1, alignItems: 'center', justifyContent: 'center'}}>
-        <Text style={{color: 'black'}}>loading...</Text>
-        <ActivityIndicator size={'large'} />
-      </View>
-    );
+    return <LoadingAnim />;
   }
 
   return (
