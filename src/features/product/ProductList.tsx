@@ -63,7 +63,6 @@ const ProductList = () => {
   return (
     <SafeAreaView style={styles.container}>
       <FlatList
-        ListEmptyComponent={<Text style={{color: 'black'}}>loading...</Text>}
         style={{margin: 10}}
         refreshing={isLoading}
         data={data}
