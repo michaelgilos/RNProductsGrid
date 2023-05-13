@@ -26,10 +26,6 @@ const Item = ({title, thumbnail, price, rating, date}: ItemProps) => (
   </View>
 );
 
-const Separator = () => (
-  <View style={{height: 1, backgroundColor: 'grey', marginHorizontal: 10}} />
-);
-
 const ProductList = () => {
   const {data, isLoading, refetch} = useGetAllProducts();
 
