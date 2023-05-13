@@ -1,3 +1,14 @@
+NOTE: Before running app in android emulator or real device
+1. run `adb devices`
+2. 
+List of devices attached
+R58M601C0XF     device
+emulator-5554   device
+3. map the ports
+$ adb -s emulator-5554 reverse tcp:8000 tcp:8000
+$ adb -s R58M601C0XF reverse tcp:8000 tcp:8000 
+
+
 Products Grid
 ====
 
