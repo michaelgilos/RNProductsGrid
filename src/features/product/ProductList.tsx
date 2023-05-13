@@ -10,7 +10,7 @@ import {
 } from 'react-native';
 import {formatDistance, isSameWeek} from 'date-fns';
 import {useGetAllProducts} from './hooks/useGetAllProducts';
-import {AirbnbRating, Rating} from 'react-native-ratings';
+import {Rating} from 'react-native-ratings';
 
 type ItemProps = {
   id: string;
