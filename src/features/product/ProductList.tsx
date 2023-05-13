@@ -7,7 +7,7 @@ import {
   Text,
   View,
 } from 'react-native';
-import {formatDistance, subDays} from 'date-fns';
+import {formatDistance, isSameWeek} from 'date-fns';
 import {useGetAllProducts} from './hooks/useGetAllProducts';
 
 type ItemProps = {
@@ -20,9 +20,11 @@ type ItemProps = {
 };
 const Item = ({title, thumbnail, price, rating, date}: ItemProps) => {
   const dateAdded = new Date(date);
-  const dateFormat = formatDistance(dateAdded, new Date(), {
-    addSuffix: true,
-  });
+  const dateFormat = isSameWeek(dateAdded, new Date())
+    ? formatDistance(dateAdded, new Date(), {
+        addSuffix: true,
+      })
+    : dateAdded.toLocaleDateString();
   return (
     <View style={styles.item}>
       <Text style={styles.itemTitle}>{title}</Text>
